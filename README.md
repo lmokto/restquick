@@ -3,6 +3,8 @@
 ![Arquitectura Diagrama](http://oi57.tinypic.com/vrsboi.jpg)
 
 ```
+tener instalado la libreria zeromq
+http://zeromq.org/intro:get-the-software
 
 cd mod_proxy
 sudo pip install zmq
