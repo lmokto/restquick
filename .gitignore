@@ -1,0 +1,6 @@
+api-rest/node_modules/
+mod_proxy/*.pyc
+mod_proxy/recursos/*.json
+mod_proxy/*.cfg
+diagrama.png
+
