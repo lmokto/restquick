@@ -36,53 +36,55 @@ import json
 """
 
 mi_ubicacion = {
-	"lat": -34.595584,
-	"lng": -58.387229
+    "lat": -34.595584,
+    "lng": -58.387229
 }
+
 
 def load(filename):
 
-	with open(filename) as f:
-		output = json.loads(f.read())
+    with open(filename) as f:
+        output = json.loads(f.read())
 
-	return output
+    return output
+
 
 def getDistance(ubi={}, waypoints={}):
 
-	R = 6373.0
-	my_lat = radians(ubi["lat"])
-	my_lng = radians(ubi["lng"])
-	results = []
-	
-	for points in waypoints:
-		#points.pop('id')
-		for key, value in points.iteritems():
-			#print key, value
-			if key == "latitude":
-				lat = radians(value)
-				dlat = my_lat - lat
+    R = 6373.0
+    my_lat = radians(ubi["lat"])
+    my_lng = radians(ubi["lng"])
+    results = []
 
-			if key == "longitude":
-				lng = radians(value)
-				dlon = my_lng - lng
-		
-		a = sin(dlat / 2)**2 + cos(my_lat) * cos(lat) * sin(dlon / 2)**2
-		c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    for points in waypoints:
+        # points.pop('id')
+        for key, value in points.iteritems():
+            # print key, value
+            if key == "latitude":
+                lat = radians(value)
+                dlat = my_lat - lat
 
-		distance = R * c
-		points.update({'distancia': distance})
-		results.append(points)
+            if key == "longitude":
+                lng = radians(value)
+                dlon = my_lng - lng
 
-	return results
+        a = sin(dlat / 2) ** 2 + cos(my_lat) * cos(lat) * sin(dlon / 2) ** 2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        distance = R * c
+        points.update({'distancia': distance})
+        results.append(points)
+
+    return results
 
 
 def main():
 
-	estaciones = load("")
-	distancias = getDistance(mi_ubicacion, estaciones)
-	distancias.sort()
-	print distancias[0:5]
+    estaciones = load("")
+    distancias = getDistance(mi_ubicacion, estaciones)
+    distancias.sort()
+    print distancias[0:5]
 
 
 if __name__ == '__main__':
-	main()
+    main()
