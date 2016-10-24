@@ -1,6 +1,6 @@
 (function run() {
-	var title = document.getElementById('
+	var title = document.getElementsByClassName('logo')[0].title;
 	setInterval(function(){
-		console.log(document.getElementsByClassName('logo')[0].title)
-	}, 1000)
+		console.log(title);
+	}, 1000);
 })();
